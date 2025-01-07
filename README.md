@@ -1,3 +1,2 @@
 # forohubchallenge
-##  EN CONSTRUCCIÓN
-Reto de Alura-Latam y Oracle-One para poner en práctiva SpringBoot y Rest.
+Reto de Alura-Latam y Oracle-One para poner en práctia SpringBoot y API REST
