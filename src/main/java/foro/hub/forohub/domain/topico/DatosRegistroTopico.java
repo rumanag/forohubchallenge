@@ -10,7 +10,6 @@ public record DatosRegistroTopico(
 
         @NotBlank
         String titulo,
-
         @NotBlank
         String mensaje,
         Date fechaCreacion,
@@ -20,6 +19,6 @@ public record DatosRegistroTopico(
         String curso,
         String respuesta,
         @NotNull
-        Long id_usuario
+        Long usuarioId
 ) {
 }

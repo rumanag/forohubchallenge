@@ -11,15 +11,13 @@ import java.util.Date;
 
 @Table(name="topicos")
 @Entity(name="Topico")
-@Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "Id")
+@EqualsAndHashCode(of = "id")
 public class Topico {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     private String titulo;
     private String mensaje;
@@ -35,6 +33,9 @@ public class Topico {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    public Topico(){
+    }
+
     public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario){
         this.titulo=datosRegistroTopico.titulo();
         this.mensaje=datosRegistroTopico.mensaje();
@@ -44,5 +45,37 @@ public class Topico {
         this.respuesta=datosRegistroTopico.respuesta();
         this.usuario = usuario;
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }

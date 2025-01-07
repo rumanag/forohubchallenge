@@ -1,5 +1,6 @@
 package foro.hub.forohub.controller;
 
+import foro.hub.forohub.domain.topico.DatosListadoTopico;
 import foro.hub.forohub.domain.topico.DatosRegistroTopico;
 import foro.hub.forohub.domain.topico.Topico;
 import foro.hub.forohub.domain.topico.TopicoRepository;
@@ -9,10 +10,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/topicos")
-public class TopicoController
-{
+public class TopicoController {
+
     @Autowired
     private TopicoRepository topicoRepository;
 
@@ -22,7 +25,13 @@ public class TopicoController
     @PostMapping
     public void registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico){
 
-        Usuario usuario = usuarioRepository.getReferenceById(datosRegistroTopico.id_usuario());
-       topicoRepository.save(new Topico(datosRegistroTopico, usuario));
+        Usuario usuario = usuarioRepository.getReferenceById(datosRegistroTopico.usuarioId());
+        topicoRepository.save(new Topico(datosRegistroTopico, usuario));
+    }
+
+    @GetMapping
+    public List<DatosListadoTopico> listadoTopicos(){
+        return topicoRepository.findAll().stream().map(DatosListadoTopico::new).toList();
+
     }
 }
