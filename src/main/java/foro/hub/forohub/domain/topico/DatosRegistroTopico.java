@@ -19,6 +19,4 @@ public record DatosRegistroTopico(
         String curso,
         String respuesta,
         @NotNull
-        Long usuarioId
-) {
-}
+        Long usuarioId) {}
