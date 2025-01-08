@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
 public record DatosListadoTopico(
+        Long id,
         String titulo,
         String mensaje,
         Date fechaCreacion,
@@ -15,7 +16,7 @@ public record DatosListadoTopico(
         Long usuarioId ){
 
         public DatosListadoTopico(Topico topico) {
-            this(topico.getTitulo(),topico.getMensaje(), topico.getFechaCreacion(),
+            this(topico.getId(), topico.getTitulo(),topico.getMensaje(), topico.getFechaCreacion(),
                  topico.getStatus(), topico.getCurso(), topico.getRespuesta(),topico.getUsuario().getId());
         }
 }

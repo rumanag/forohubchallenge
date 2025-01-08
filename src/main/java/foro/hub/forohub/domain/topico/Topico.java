@@ -28,6 +28,7 @@ public class Topico {
 
     private String curso;
     private String respuesta;
+    private boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
@@ -43,6 +44,7 @@ public class Topico {
         this.status=datosRegistroTopico.status();
         this.curso=datosRegistroTopico.curso();
         this.respuesta=datosRegistroTopico.respuesta();
+        this.activo= true;
         this.usuario = usuario;
 
     }
@@ -77,5 +79,31 @@ public class Topico {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public void actualizarTopico(DatosActualizaTopico datosActualizaTopico) {
+
+        if(datosActualizaTopico.mensaje() != null){
+            this.mensaje = datosActualizaTopico.mensaje();
+        }
+
+        if(datosActualizaTopico.status() != null){
+            this.status = datosActualizaTopico.status();
+        }
+       if(datosActualizaTopico.respuesta() !=null){
+           this.respuesta= datosActualizaTopico.respuesta();
+       }
+    }
+
+    public void desactivarTopico() {
+        this.activo= false;
     }
 }
