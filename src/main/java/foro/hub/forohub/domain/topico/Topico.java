@@ -37,6 +37,7 @@ public class Topico {
     @JoinColumn(name = "id_curso")
     private Curso curso;
 
+
     public Topico(){}
 
     public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario, Curso curso){

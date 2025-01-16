@@ -11,6 +11,7 @@ create table topicos(
     id_respuesta bigint,
 
     primary key(id),
+
     CONSTRAINT fk_respuesta FOREIGN KEY (id_respuesta) REFERENCES respuestas(id)
 
 )

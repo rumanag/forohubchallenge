@@ -6,8 +6,8 @@ create table usuarios(
 	contrasena varchar(100) not null,
 	activo boolean,
 	perfil varchar(100),
-	id_topico bigint,
-   id_respuesta bigint,
+	topico varchar(100),
+    respuesta varchar(100),
 
 	primary key(id)
 )
