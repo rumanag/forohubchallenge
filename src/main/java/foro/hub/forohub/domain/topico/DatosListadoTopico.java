@@ -8,7 +8,7 @@ public record DatosListadoTopico(
         String mensaje,
         Date fechaCreacion,
         Status status,
-        String curso,
+        Long idUsuario,
         String respuesta,
         Long IdUsuario){
 

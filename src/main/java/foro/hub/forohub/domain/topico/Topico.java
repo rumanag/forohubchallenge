@@ -3,6 +3,7 @@ package foro.hub.forohub.domain.topico;
 import foro.hub.forohub.domain.curso.Curso;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
@@ -38,7 +39,7 @@ public class Topico {
 
     public Topico(){}
 
-    public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario){
+    public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario, Curso curso){
         this.titulo=datosRegistroTopico.titulo();
         this.mensaje=datosRegistroTopico.mensaje();
         this.fechaCreacion=datosRegistroTopico.fechaCreacion();
@@ -47,6 +48,9 @@ public class Topico {
         this.activo= true;
         this.usuario = usuario;
         this.curso = curso;
+    }
+
+    public Topico(@Valid DatosRegistroTopico datosRegistroTopico, Usuario usuario) {
     }
 
     public long getId() {

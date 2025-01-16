@@ -33,5 +33,7 @@ public class Curso {
                 this.nombreCurso = curso.nombre_curso();
                 this.categoria = curso.categoria();
         }
-
+        public Long getId() {
+                return id;
+        }
 }
