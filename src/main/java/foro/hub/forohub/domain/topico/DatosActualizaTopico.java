@@ -9,5 +9,7 @@ public record DatosActualizaTopico(
         String mensaje,
         Status status,
         String respuesta,
-        Long usuarioId) {}
+        Boolean activo,
+        Long IdUsuario) {}
+
 

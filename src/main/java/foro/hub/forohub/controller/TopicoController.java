@@ -12,8 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
 @RestController
 @RequestMapping("/topicos")
 public class TopicoController {
@@ -27,7 +25,7 @@ public class TopicoController {
     @PostMapping
     public void registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico){
 
-        Usuario usuario = usuarioRepository.getReferenceById(datosRegistroTopico.usuarioId());
+        Usuario usuario = usuarioRepository.getReferenceById(datosRegistroTopico.idUsuario());
         topicoRepository.save(new Topico(datosRegistroTopico, usuario));
     }
 

@@ -1,11 +1,10 @@
 package foro.hub.forohub.domain.topico;
 
+import foro.hub.forohub.domain.curso.Curso;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -22,63 +21,64 @@ public class Topico {
     private String titulo;
     private String mensaje;
     private Date fechaCreacion;
+    private boolean activo;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    private String curso;
-    private String respuesta;
-    private boolean activo;
+    private String idRespuesta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    public Topico(){
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_curso")
+    private Curso curso;
+
+    public Topico(){}
 
     public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario){
         this.titulo=datosRegistroTopico.titulo();
         this.mensaje=datosRegistroTopico.mensaje();
         this.fechaCreacion=datosRegistroTopico.fechaCreacion();
         this.status=datosRegistroTopico.status();
-        this.curso=datosRegistroTopico.curso();
-        this.respuesta=datosRegistroTopico.respuesta();
+        this.idRespuesta=datosRegistroTopico.idRespuesta();
         this.activo= true;
         this.usuario = usuario;
-
+        this.curso = curso;
     }
 
     public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getMensaje() {
         return mensaje;
     }
 
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public boolean isActivo() {
@@ -87,6 +87,38 @@ public class Topico {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getIdRespuesta() {
+        return idRespuesta;
+    }
+
+    public void setIdRespuesta(String idRespuesta) {
+        this.idRespuesta = idRespuesta;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public void actualizarTopico(DatosActualizaTopico datosActualizaTopico) {
@@ -99,11 +131,14 @@ public class Topico {
             this.status = datosActualizaTopico.status();
         }
        if(datosActualizaTopico.respuesta() !=null){
-           this.respuesta= datosActualizaTopico.respuesta();
+           this.idRespuesta= datosActualizaTopico.respuesta();
        }
     }
 
     public void desactivarTopico() {
         this.activo= false;
     }
+
+
+
 }

@@ -1,6 +1,6 @@
 package foro.hub.forohub.domain.topico;
 
-import jakarta.validation.constraints.Email;
+import foro.hub.forohub.domain.curso.Curso;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,7 +16,10 @@ public record DatosRegistroTopico(
         @NotNull
         Status status,
         @NotBlank
-        String curso,
-        String respuesta,
+        Boolean activo,
         @NotNull
-        Long usuarioId) {}
+        Long idCurso,
+        @NotNull
+        Long idUsuario,
+        String idRespuesta
+) {}

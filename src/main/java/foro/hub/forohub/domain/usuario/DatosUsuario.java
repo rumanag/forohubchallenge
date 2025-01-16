@@ -10,11 +10,12 @@ public record DatosUsuario(
         String  nombre,
 
         @NotBlank
-        String correoElectronico,
+        String email,
 
         @NotBlank
         @Pattern(regexp = "\\d{4,6}")
         String contrasena,
+
         @NotNull
         Perfil datosPerfilUsuario
 ) {

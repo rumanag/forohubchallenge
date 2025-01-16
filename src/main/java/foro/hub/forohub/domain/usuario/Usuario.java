@@ -4,8 +4,6 @@ import foro.hub.forohub.domain.topico.Topico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String  nombre;
-    private String correoElectronico;
+    private String email;
     private String contrasena;
 
     @Enumerated(EnumType.STRING)
@@ -33,7 +31,7 @@ public class Usuario {
 
     public Usuario(DatosUsuario usuario){
         this.nombre = usuario.nombre();
-        this.correoElectronico = usuario.correoElectronico();
+        this.email = usuario.email();
         this.contrasena = usuario.contrasena();
     }
 
@@ -45,8 +43,8 @@ public class Usuario {
         return nombre;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getEmail() {
+        return email;
     }
 
     public String getContrasena() {
