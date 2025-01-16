@@ -18,6 +18,5 @@ public record DatosUsuario(
 
         @NotNull
         Perfil datosPerfilUsuario
-) {
-}
+) {}
 

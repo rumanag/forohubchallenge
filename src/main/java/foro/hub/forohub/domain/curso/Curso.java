@@ -1,5 +1,6 @@
 package foro.hub.forohub.domain.curso;
 
+import foro.hub.forohub.domain.curso.DatosCurso.DatosCurso;
 import foro.hub.forohub.domain.topico.Topico;
 import foro.hub.forohub.domain.usuario.DatosUsuario;
 import foro.hub.forohub.domain.usuario.Perfil;
@@ -25,9 +26,12 @@ public class Curso {
         @OneToMany(mappedBy = "curso")
         private List<Topico> topicos;
 
-        public Long getId() {
-                return id;
-        }
 
+        public Curso(){}
+
+        public Curso(DatosCurso curso) {
+                this.nombreCurso = curso.nombre_curso();
+                this.categoria = curso.categoria();
+        }
 
 }
