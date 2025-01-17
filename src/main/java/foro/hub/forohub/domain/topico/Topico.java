@@ -4,14 +4,16 @@ import foro.hub.forohub.domain.curso.Curso;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.Date;
 
 @Table(name="topicos")
 @Entity(name="Topico")
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Topico {
 
@@ -22,12 +24,10 @@ public class Topico {
     private String titulo;
     private String mensaje;
     private Date fechaCreacion;
-    private boolean activo;
+    private Boolean activo;
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    private String idRespuesta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
@@ -37,8 +37,7 @@ public class Topico {
     @JoinColumn(name = "id_curso")
     private Curso curso;
 
-
-    public Topico(){}
+    private String idRespuesta;
 
     public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario, Curso curso){
         this.titulo=datosRegistroTopico.titulo();
@@ -54,77 +53,7 @@ public class Topico {
     public Topico(@Valid DatosRegistroTopico datosRegistroTopico, Usuario usuario) {
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getIdRespuesta() {
-        return idRespuesta;
-    }
-
-    public void setIdRespuesta(String idRespuesta) {
-        this.idRespuesta = idRespuesta;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
 
     public void actualizarTopico(DatosActualizaTopico datosActualizaTopico) {
 

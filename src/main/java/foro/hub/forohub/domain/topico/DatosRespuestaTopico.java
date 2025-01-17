@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-public record DatosRespuestaTopico(Long id, String titulo, String mensaje,Date fechaCreacion,Status status,
-                                   String curso,String respuesta,Usuario usuario)
+public record DatosRespuestaTopico(
+        Long id,
+        String titulo,
+        String mensaje,
+        Date fechaCreacion,
+        Boolean activo,
+        Status status,
+        String curso,
+        Usuario usuario,
+        String respuesta)
 {}

@@ -2,17 +2,18 @@ package foro.hub.forohub.domain.curso;
 
 import foro.hub.forohub.domain.curso.DatosCurso.DatosCurso;
 import foro.hub.forohub.domain.topico.Topico;
-import foro.hub.forohub.domain.usuario.DatosUsuario;
-import foro.hub.forohub.domain.usuario.Perfil;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name="cursos")
 @Entity
+
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Curso {
 
@@ -27,13 +28,9 @@ public class Curso {
         private List<Topico> topicos;
 
 
-        public Curso(){}
-
         public Curso(DatosCurso curso) {
                 this.nombreCurso = curso.nombre_curso();
                 this.categoria = curso.categoria();
         }
-        public Long getId() {
-                return id;
-        }
+
 }

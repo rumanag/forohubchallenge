@@ -3,14 +3,16 @@ package foro.hub.forohub.domain.respuesta;
 import foro.hub.forohub.domain.topico.Topico;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.Date;
 
 @Table(name="respuestas")
 @Entity(name="Respuesta")
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Respuesta {
 

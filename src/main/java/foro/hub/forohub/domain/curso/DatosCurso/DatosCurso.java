@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 
 public record DatosCurso(
 
-
         @NotBlank
         String  nombre_curso,
         @NotBlank
