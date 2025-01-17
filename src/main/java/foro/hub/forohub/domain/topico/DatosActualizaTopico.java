@@ -8,7 +8,6 @@ public record DatosActualizaTopico(
         @NotNull Long id,
         String mensaje,
         Status status,
-        String respuesta,
         Boolean activo,
         Long IdUsuario) {}
 

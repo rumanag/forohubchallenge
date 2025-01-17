@@ -12,14 +12,16 @@ public record DatosRegistroTopico(
         String titulo,
         @NotBlank
         String mensaje,
-        Date fechaCreacion,
         @NotNull
-        Status status,
+        Date fechaCreacion,
         @NotBlank
         Boolean activo,
+        @NotNull
+        Status status,
+
         @NotNull
         Long idCurso,
         @NotNull
         Long idUsuario,
-        String idRespuesta
+        Long idRespuesta
 ) {}

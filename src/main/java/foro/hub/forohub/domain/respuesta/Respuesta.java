@@ -16,9 +16,9 @@ import java.util.Date;
 @EqualsAndHashCode(of = "id")
 public class Respuesta {
 
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String mensaje;
     private Date fechaCreacion;

@@ -5,12 +5,16 @@ import foro.hub.forohub.domain.usuario.Usuario;
 import foro.hub.forohub.domain.usuario.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/topicos")
@@ -23,10 +27,16 @@ public class TopicoController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public void registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico){
+    public ResponseEntity<DatosRespuestaTopico> registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico,
+                                                                                    UriComponentsBuilder uriComponentsBuilder){
 
-        Usuario usuario = usuarioRepository.getReferenceById(datosRegistroTopico.idUsuario());
-        topicoRepository.save(new Topico(datosRegistroTopico, usuario));
+        Topico topico = topicoRepository.save(new Topico(datosRegistroTopico));
+        DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(topico.getId(),
+              topico.getTitulo(),topico.getMensaje(),topico.getFechaCreacion(),topico.getActivo(),
+                topico.getStatus(),topico.getCurso(),topico.getUsuario(),topico.getRespuesta());
+
+        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        return ResponseEntity.created(url).body(datosRespuestaTopico);
     }
 
     @PutMapping
@@ -40,10 +50,27 @@ public class TopicoController {
     }
 
     @GetMapping
-    public Page<DatosListadoTopico> listadoTopicos(@PageableDefault(size=4) Pageable paginacion){
+    public ResponseEntity<Page<DatosListadoTopico>>   listadoTopicos(@PageableDefault(size=4) Pageable paginacion){
 //        return topicoRepository.findAll(paginacion).map(DatosListadoTopico::new); lista todos los items, activos y no activos
-        return topicoRepository.findByActivoTrue(paginacion).map(DatosListadoTopico::new);
+        return ResponseEntity.ok(topicoRepository.findByActivoTrue(paginacion).map(DatosListadoTopico::new)) ;
     }
+
+//     MOSTRAR LOS DATOS DE UN MEDICO EN ESPECIFICO
+
+    @GetMapping("/id")
+    public ResponseEntity<DatosRespuestaTopico> retornaDatosMedico(@PathVariable Long id){
+
+        Topico topico = topicoRepository.getReferenceById(id);
+        var datosTopico = new DatosRespuestaTopico(topico.getId(),
+                topico.getTitulo(),topico.getMensaje(),topico.getFechaCreacion(),topico.getActivo(),
+                topico.getStatus(),topico.getCurso(),topico.getUsuario(),topico.getRespuesta());
+
+        return ResponseEntity.ok(datosTopico);
+
+
+
+    }
+
 
     @DeleteMapping("/{id}")
     @Transactional
@@ -65,5 +92,4 @@ public class TopicoController {
         return ResponseEntity.noContent().build();
 
     }
-
 }

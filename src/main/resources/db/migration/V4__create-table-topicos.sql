@@ -8,10 +8,7 @@ create table topicos(
     status varchar(100) not null,
     curso varchar(100) not null,
     usuario varchar(100) not null,
-    id_respuesta bigint,
+    respuesta varchar(100) not null,
 
-    primary key(id),
-
-    CONSTRAINT fk_respuesta FOREIGN KEY (id_respuesta) REFERENCES respuestas(id)
-
+    primary key(id)
 )

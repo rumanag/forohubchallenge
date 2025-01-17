@@ -1,5 +1,7 @@
 package foro.hub.forohub.domain.topico;
 
+import foro.hub.forohub.domain.curso.Curso;
+import foro.hub.forohub.domain.respuesta.Respuesta;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 
@@ -12,7 +14,7 @@ public record DatosRespuestaTopico(
         Date fechaCreacion,
         Boolean activo,
         Status status,
-        String curso,
+        Curso curso,
         Usuario usuario,
-        String respuesta)
+        Respuesta respuesta)
 {}
