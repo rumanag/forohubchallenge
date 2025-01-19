@@ -1,17 +1,18 @@
 package foro.hub.forohub.domain.topico;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public record DatosListadoTopico(
               Long id,
               String titulo,
               String mensaje,
-              Date fechaCreacion,
+              LocalDateTime fechaCreacion,
               Boolean activo,
               Status status,
               Long idCurso,
-              Long idUsuario,
-              Long idRespuesta
+              Long idUsuario
               )
 {
         public DatosListadoTopico(Topico topico) {
@@ -22,8 +23,8 @@ public record DatosListadoTopico(
                  topico.getActivo(),
                  topico.getStatus(),
                  topico.getCurso().getId(),
-                 topico.getUsuario().getId(),
-                 topico.getRespuesta().getId());
+                 topico.getUsuario().getId()
+                 );
         }
 }
 

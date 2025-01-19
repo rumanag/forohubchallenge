@@ -13,15 +13,7 @@ public record DatosRegistroTopico(
         @NotBlank
         String mensaje,
         @NotNull
-        Date fechaCreacion,
-        @NotBlank
-        Boolean activo,
-        @NotNull
-        Status status,
-
-        @NotNull
         Long idCurso,
         @NotNull
-        Long idUsuario,
-        Long idRespuesta
+        Long idUsuario
 ) {}

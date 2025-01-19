@@ -5,26 +5,36 @@ import foro.hub.forohub.domain.respuesta.Respuesta;
 import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Table(name="topicos")
-@Entity(name="Topico")
+@Entity
+@Table(name = "topicos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 public class Topico {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @NotBlank
     private String titulo;
+
     private String mensaje;
-    private Date fechaCreacion;
+
+    private LocalDateTime fechaCreacion;
+
+    @NotNull
     private Boolean activo;
 
     @Enumerated(EnumType.STRING)
@@ -38,19 +48,17 @@ public class Topico {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_respuesta")
-    private Respuesta respuesta;
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Respuesta> respuesta = new ArrayList<>();
 
-    public Topico(@Valid DatosRegistroTopico datosRegistroTopico){
+    public Topico(DatosRegistroTopico datosRegistroTopico, Usuario usuario, Curso curso){
         this.titulo=datosRegistroTopico.titulo();
         this.mensaje=datosRegistroTopico.mensaje();
-        this.fechaCreacion=datosRegistroTopico.fechaCreacion();
-        this.status=datosRegistroTopico.status();
+        this.fechaCreacion= LocalDateTime.now();
+        this.status=Status.NUEVO;
         this.activo= true;
         this.usuario = usuario;
         this.curso = curso;
-        this.respuesta = respuesta;
     }
 
     public void actualizarTopico(DatosActualizaTopico datosActualizaTopico) {
@@ -63,7 +71,6 @@ public class Topico {
             this.status = datosActualizaTopico.status();
         }
     }
-
     public void desactivarTopico() {
         this.activo= false;
     }

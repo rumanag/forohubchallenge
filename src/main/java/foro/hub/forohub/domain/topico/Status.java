@@ -4,7 +4,9 @@ public enum Status {
 
     NUEVO,
     ACTUALIZADO,
-    BORRADO,
     ESPERA,
-    CUMPLIDO
+    CUMPLIDO,
+    INACTIVO
+
+
 }

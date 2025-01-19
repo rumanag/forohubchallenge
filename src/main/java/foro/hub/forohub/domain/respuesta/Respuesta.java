@@ -5,24 +5,27 @@ import foro.hub.forohub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
-
-@Table(name="respuestas")
-@Entity(name="Respuesta")
+@Entity
+@Table(name = "respuestas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 public class Respuesta {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String mensaje;
-    private Date fechaCreacion;
+
+    private LocalDateTime fechaCreacion;
+
     private String solucion;
+
     private boolean activo;
 
     @ManyToOne(fetch = FetchType.LAZY)
