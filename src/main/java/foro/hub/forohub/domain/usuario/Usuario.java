@@ -63,12 +63,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "contrasena";
+        return contrasena;
     }
 
     @Override
     public String getUsername() {
-        return "nombre";
+        return nombre;
     }
 
     @Override
