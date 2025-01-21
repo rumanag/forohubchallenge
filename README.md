@@ -1,5 +1,5 @@
 # FORO HUB 
-![logo](/tools/images/foro1.PNG)
+![logo](/tools/images/foro1.png)
 
 ## 1. INTRODUCCION Y ANTECEDENTES
 
@@ -97,6 +97,10 @@ Para el diseño local de las APIs hemos trabajado con Insomnia, una
 ### - **Listar tópicos**
 
 ![listarTopicos](/tools/images/insomniaGetListadoTopicos.png)
+
+### - **Listar un tópico específico**
+
+![listarTopicoEspecifico](/tools/images/insomniaGetListarUnTopicoEspecífico.png)
 
 ### - **Eliminar un tópico**
 

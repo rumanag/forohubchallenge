@@ -23,6 +23,7 @@ public class SecurityConfigurations {
 
     @Autowired
     private SecurityFilter securityFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -38,7 +39,6 @@ public class SecurityConfigurations {
                         //.logoutSuccessUrl("/login?logout")
                         //.permitAll())
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-
 
         return http.build();
     }
