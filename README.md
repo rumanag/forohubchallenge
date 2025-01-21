@@ -1,5 +1,5 @@
 # FORO HUB 
-![logo](/tools/images/foro1.PNG)
+![logo](/tools/images/foro1.png)
 
 ## 1. INTRODUCCION Y ANTECEDENTES
 
