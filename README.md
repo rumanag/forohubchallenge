@@ -25,7 +25,7 @@ involucrados en el proyecto. Nunca pude rajarla!
 La mejor descripción del proyecto la desarrolló la misma Alura-Latam, en Trello, por lo cual 
 de allí tomo los apartes más relevantes:
 
-"... Ya sabemos para que sirve el foro y sabemos cómo se ve, pero ¿sabemos cómo funciona por detrás? 
+"... Ya sabemos para qué sirve el foro y sabemos cómo se ve, pero ¿sabemos cómo funciona por detrás? 
 Es decir ¿dónde se almacenan las informaciones? ¿cómo se tratan esos datos para que se relacione un tópico con una respuesta, 
 o como se relacionan los usuarios con las respuestas de un tópico?
 Ese es nuestro desafío, que se llama Foro Hub: vamos a replicar a nivel de back end este proceso, y para eso crearemos una 
